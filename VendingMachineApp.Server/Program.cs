@@ -20,6 +20,7 @@ builder.Services.AddScoped<IIncludeableRepository<Order>, OrderRepository>();
 builder.Services.AddScoped<IRepository<Drink>, DrinkRepository>();
 builder.Services.AddScoped<IRepository<Brand>, BrandRepository>();
 builder.Services.AddScoped<IRepository<OrderItem>, OrderItemsRepository>();
+builder.Services.AddScoped<IRepository<Coin>, CoinRepository>();
 builder.Services.AddScoped<HomeService>();
 builder.Services.AddScoped<OrderService>();
 

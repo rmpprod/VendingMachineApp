@@ -8,6 +8,7 @@ namespace VendingMachineApp.Server.Interfaces
         IRepository<Drink> Drinks { get; }
         IRepository<Brand> Brands { get; }
         IRepository<OrderItem> OrderItems { get; }
+        IRepository<Coin> Coins { get; }
         void Save();
     }
 }

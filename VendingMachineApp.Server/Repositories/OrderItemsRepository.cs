@@ -1,4 +1,5 @@
-﻿using VendingMachineApp.Server.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using VendingMachineApp.Server.Data;
 using VendingMachineApp.Server.EF;
 using VendingMachineApp.Server.Interfaces;
 
@@ -14,32 +15,34 @@ namespace VendingMachineApp.Server.Repositories
 
         public void Create(OrderItem item)
         {
-            throw new NotImplementedException();
+            db.OrderItems.Add(item);
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            OrderItem item = db.OrderItems.Find(id);
+            if (item != null)
+                db.OrderItems.Remove(item);
         }
 
         public IEnumerable<OrderItem> Find(Func<OrderItem, bool> predicate)
         {
-            throw new NotImplementedException();
+            return db.OrderItems.Where(predicate).ToList();
         }
 
         public OrderItem Get(int id)
         {
-            throw new NotImplementedException();
+            return db.OrderItems.Find(id);
         }
 
         public IEnumerable<OrderItem> GetAll()
         {
-            throw new NotImplementedException();
+            return db.OrderItems;
         }
 
         public void Update(OrderItem item)
         {
-            throw new NotImplementedException();
+            db.Entry(item).State = EntityState.Modified;
         }
 
         public void CreateRange(IEnumerable<OrderItem> items)

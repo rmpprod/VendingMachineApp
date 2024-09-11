@@ -20,7 +20,7 @@ namespace VendingMachineApp.Server.Repositories
 
         public void Delete(int id)
         {
-            Brand brand = db.Brands.FirstOrDefault(b => b.Id == id);
+            Brand brand = db.Brands.Find(id);
             if (brand != null)
                 db.Brands.Remove(brand);
         }

@@ -10,19 +10,22 @@ namespace VendingMachineApp.Server.Repositories
         public IRepository<Drink> Drinks { get; private set; }
         public IRepository<Brand> Brands { get; private set; }
         public IRepository<OrderItem> OrderItems { get; private set; }
+        public IRepository<Coin> Coins { get; private set; }
         private readonly VendingMachineContext db;
         public UnitOfWork(
             VendingMachineContext _db,
             IIncludeableRepository<Order> _orderContext,
             IRepository<Drink> _drinkContext,
             IRepository<Brand> _brandContext,
-            IRepository<OrderItem> _orderItems)
+            IRepository<OrderItem> _orderItems,
+            IRepository<Coin> _coins)
         {
             db = _db;
             Orders = _orderContext;
             Drinks = _drinkContext;
             Brands = _brandContext;
             OrderItems = _orderItems;
+            Coins = _coins;
         }
 
         public void Save()

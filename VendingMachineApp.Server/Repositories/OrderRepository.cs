@@ -21,7 +21,7 @@ namespace VendingMachineApp.Server.Repositories
 
         public void Delete(int id)
         {
-            Order order = db.Orders.FirstOrDefault(o => o.Id == id);
+            Order order = db.Orders.Find(id);
             if (order != null)
                 db.Orders.Remove(order);
         }

@@ -17,5 +17,15 @@ namespace VendingMachineApp.Server.EF
             //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            Coin coinWithNominal_1 = new Coin { Id = 1, Nominal = 1, Quantity = 0};
+            Coin coinWithNominal_2 = new Coin { Id = 2, Nominal = 2, Quantity = 0 };
+            Coin coinWithNominal_5 = new Coin { Id = 3, Nominal = 5, Quantity = 0};
+            Coin coinWithNominal_10 = new Coin { Id = 4, Nominal = 10, Quantity = 0};
+
+            modelBuilder.Entity<Coin>().HasData(coinWithNominal_1, coinWithNominal_2, coinWithNominal_5, coinWithNominal_10);
+        }
     }
 }

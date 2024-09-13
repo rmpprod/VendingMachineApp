@@ -19,14 +19,15 @@ namespace VendingMachineApp.Server.Controllers
             var result = homeService.GetAllDrinksDTO();
             if (result != null)
                 return Results.Ok(result);
-            return Results.BadRequest("Что-то пошло не так");
+            return Results.NotFound("Что-то пошло не так");
         }
 
         [HttpPost]
         public IResult ImportExcel(IFormFile file)
         {
             homeService.ImportExcelFile(file);
-            return Results.Ok();
+            var uri = Url.Action("GetDrinksCatalog");
+            return Results.CreatedAtRoute(uri);
         }
     }
 }

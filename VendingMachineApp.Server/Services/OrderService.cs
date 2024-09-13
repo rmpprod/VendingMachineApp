@@ -21,7 +21,7 @@ namespace VendingMachineApp.Server.Services
             var orderDTO = mapper.Map<OrderDTO>(order);
             return orderDTO;
         }
-        public void Make(IEnumerable<OrderItemDTO> items)
+        public OrderDTO Make(IEnumerable<OrderItemDTO> items)
         {
             var order = new Order { Date = DateTime.Now };
             db.Orders.Create(order);
@@ -35,6 +35,9 @@ namespace VendingMachineApp.Server.Services
 
             db.OrderItems.CreateRange(orderItems);
             db.Save();
+
+            var orderDTO = mapper.Map<OrderDTO>(order);
+            return orderDTO;
         }
     }
 }

@@ -13,6 +13,7 @@ namespace VendingMachineApp.Server.Infrastructure
                 .ForMember(dest => dest.BrandName, opt => opt.MapFrom(src => src.Brand.Name));
             CreateMap<Order, OrderDTO>();
             CreateMap<OrderItem, OrderItemDTO>();
+            CreateMap<Coin, CoinDTO>();
         }
     }
 }

@@ -6,6 +6,6 @@
         public DateTime Date { get; set; }
         public int TotalAmount { get; set; }
 
-        public List<OrderItem> Items { get; set; }
+        public List<OrderItem>? Items { get; set; }
     }
 }

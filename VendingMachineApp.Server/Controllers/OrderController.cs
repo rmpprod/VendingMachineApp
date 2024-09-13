@@ -20,7 +20,9 @@ namespace VendingMachineApp.Server.Controllers
         public IResult GetOrder(int id)
         {
             var order = orderService.Get(id);
-            return Results.Ok(order);
+            if (order != null)
+                return Results.Ok(order);
+            return Results.NotFound();
         }
 
         [HttpPost]
@@ -28,8 +30,9 @@ namespace VendingMachineApp.Server.Controllers
         {
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<OrderItemView, OrderItemDTO>()).CreateMapper();
             var items = mapper.Map<IEnumerable<OrderItemView>, List<OrderItemDTO>>(orderItems);
-            orderService.Make(items);
-            return Results.Ok();
+            var orderDTO = orderService.Make(items);
+            var uri = Url.Action("GetOrder", new { id = orderDTO.Id });
+            return Results.CreatedAtRoute(uri, orderDTO);
         }
     }
 }
